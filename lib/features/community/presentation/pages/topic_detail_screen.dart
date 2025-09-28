@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_text_styles.dart';
-import '../../../../core/localization/app_localizations.dart';
 
 class TopicDetailScreen extends StatefulWidget {
   final String topicId;
-  
+
   const TopicDetailScreen({
     super.key,
     required this.topicId,
@@ -29,8 +28,6 @@ class _TopicDetailScreenState extends State<TopicDetailScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context)!;
-
     return Scaffold(
       appBar: AppBar(
         title: const Text('Konu Detayı'),
@@ -63,7 +60,8 @@ class _TopicDetailScreenState extends State<TopicDetailScreen> {
                     decoration: BoxDecoration(
                       color: AppColors.surface,
                       borderRadius: BorderRadius.circular(12),
-                      border: Border.all(color: AppColors.primary.withOpacity(0.2)),
+                      border:
+                          Border.all(color: AppColors.primary.withOpacity(0.2)),
                     ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -76,7 +74,7 @@ class _TopicDetailScreenState extends State<TopicDetailScreen> {
                               child: Icon(Icons.person, size: 20),
                             ),
                             const SizedBox(width: 12),
-                            Expanded(
+                            const Expanded(
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
@@ -100,12 +98,12 @@ class _TopicDetailScreenState extends State<TopicDetailScreen> {
                           ],
                         ),
                         const SizedBox(height: 12),
-                        Text(
+                        const Text(
                           'İlk Hamileliğimde Endişelerim',
                           style: AppTextStyles.titleLarge,
                         ),
                         const SizedBox(height: 8),
-                        Text(
+                        const Text(
                           'Merhaba anneler, ilk hamileliğimde 8. haftadayım ve çok endişeli hissediyorum. Normal mi bu durum? Sizler nasıl başa çıktınız?',
                           style: AppTextStyles.bodyMedium,
                         ),
@@ -113,18 +111,19 @@ class _TopicDetailScreenState extends State<TopicDetailScreen> {
                         Row(
                           children: [
                             Container(
-                              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 8, vertical: 4),
                               decoration: BoxDecoration(
                                 color: AppColors.pregnancyColor,
                                 borderRadius: BorderRadius.circular(8),
                               ),
-                              child: Text(
+                              child: const Text(
                                 'Gebelik',
                                 style: AppTextStyles.labelSmall,
                               ),
                             ),
                             const Spacer(),
-                            Text(
+                            const Text(
                               '5 yanıt',
                               style: AppTextStyles.caption,
                             ),
@@ -134,7 +133,7 @@ class _TopicDetailScreenState extends State<TopicDetailScreen> {
                     ),
                   ),
                 ),
-                
+
                 // Replies
                 SliverList(
                   delegate: SliverChildBuilderDelegate(
@@ -145,7 +144,7 @@ class _TopicDetailScreenState extends State<TopicDetailScreen> {
               ],
             ),
           ),
-          
+
           // Reply input
           Container(
             padding: const EdgeInsets.all(16),
@@ -174,7 +173,7 @@ class _TopicDetailScreenState extends State<TopicDetailScreen> {
                         },
                       ),
                       const SizedBox(width: 8),
-                      Text(
+                      const Text(
                         'Anonim yanıt',
                         style: AppTextStyles.labelMedium,
                       ),
@@ -229,7 +228,7 @@ class _TopicDetailScreenState extends State<TopicDetailScreen> {
                 child: Icon(Icons.person, size: 16),
               ),
               const SizedBox(width: 8),
-              Expanded(
+              const Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -253,7 +252,7 @@ class _TopicDetailScreenState extends State<TopicDetailScreen> {
             ],
           ),
           const SizedBox(height: 8),
-          Text(
+          const Text(
             'Bu tamamen normal! Ben de ilk hamileliğimde çok endişeliydim. Hekiminle konuş, seni rahatlatacaktır.',
             style: AppTextStyles.bodySmall,
           ),
@@ -268,7 +267,7 @@ class _TopicDetailScreenState extends State<TopicDetailScreen> {
       // TODO: Send reply to backend
       _replyController.clear();
       _replyFocusNode.unfocus();
-      
+
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content: Text('Yanıtınız gönderildi'),

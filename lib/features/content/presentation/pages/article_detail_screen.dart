@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_text_styles.dart';
-import '../../../../core/localization/app_localizations.dart';
 
 class ArticleDetailScreen extends StatefulWidget {
   final String articleId;
-  
+
   const ArticleDetailScreen({
     super.key,
     required this.articleId,
@@ -18,12 +17,9 @@ class ArticleDetailScreen extends StatefulWidget {
 
 class _ArticleDetailScreenState extends State<ArticleDetailScreen> {
   bool _isFavorited = false;
-  bool _isLoading = false;
 
   @override
   Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context)!;
-
     return Scaffold(
       body: CustomScrollView(
         slivers: [
@@ -58,7 +54,6 @@ class _ArticleDetailScreenState extends State<ArticleDetailScreen> {
               ),
             ],
           ),
-          
           SliverToBoxAdapter(
             child: Padding(
               padding: const EdgeInsets.all(16),
@@ -69,41 +64,42 @@ class _ArticleDetailScreenState extends State<ArticleDetailScreen> {
                   Row(
                     children: [
                       Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 8, vertical: 4),
                         decoration: BoxDecoration(
                           color: AppColors.pregnancyColor,
                           borderRadius: BorderRadius.circular(8),
                         ),
-                        child: Text(
+                        child: const Text(
                           'Gebelik',
                           style: AppTextStyles.labelSmall,
                         ),
                       ),
                       const Spacer(),
-                      Text(
+                      const Text(
                         '5 dk okuma',
                         style: AppTextStyles.labelMedium,
                       ),
                     ],
                   ),
                   const SizedBox(height: 16),
-                  
+
                   // Article title
-                  Text(
+                  const Text(
                     'Hamilelik Döneminde Beslenme: Sağlıklı Bir Gebelik İçin Rehber',
                     style: AppTextStyles.articleTitle,
                   ),
                   const SizedBox(height: 8),
-                  
+
                   // Author and date
-                  Row(
+                  const Row(
                     children: [
-                      const CircleAvatar(
+                      CircleAvatar(
                         radius: 16,
                         backgroundColor: AppColors.surfaceVariant,
                         child: Icon(Icons.person, size: 20),
                       ),
-                      const SizedBox(width: 8),
+                      SizedBox(width: 8),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -120,18 +116,19 @@ class _ArticleDetailScreenState extends State<ArticleDetailScreen> {
                     ],
                   ),
                   const SizedBox(height: 24),
-                  
+
                   // Medical disclaimer
                   Container(
                     padding: const EdgeInsets.all(12),
                     decoration: BoxDecoration(
                       color: AppColors.info.withOpacity(0.1),
                       borderRadius: BorderRadius.circular(8),
-                      border: Border.all(color: AppColors.info.withOpacity(0.3)),
+                      border:
+                          Border.all(color: AppColors.info.withOpacity(0.3)),
                     ),
                     child: Row(
                       children: [
-                        Icon(
+                        const Icon(
                           Icons.info_outline,
                           color: AppColors.info,
                           size: 20,
@@ -140,14 +137,15 @@ class _ArticleDetailScreenState extends State<ArticleDetailScreen> {
                         Expanded(
                           child: Text(
                             'Bu içerik bilgilendirme amaçlıdır; kişisel durumunuz için hekiminize danışın.',
-                            style: AppTextStyles.caption.copyWith(color: AppColors.info),
+                            style: AppTextStyles.caption
+                                .copyWith(color: AppColors.info),
                           ),
                         ),
                       ],
                     ),
                   ),
                   const SizedBox(height: 24),
-                  
+
                   // Article content
                   Html(
                     data: _getArticleContent(),
@@ -175,22 +173,24 @@ class _ArticleDetailScreenState extends State<ArticleDetailScreen> {
                       ),
                     },
                   ),
-                  
+
                   const SizedBox(height: 32),
-                  
+
                   // Related articles
-                  Text(
+                  const Text(
                     'İlgili Yazılar',
                     style: AppTextStyles.headlineSmall,
                   ),
                   const SizedBox(height: 16),
-                  
+
                   ListView.separated(
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
                     itemCount: 3,
-                    separatorBuilder: (context, index) => const SizedBox(height: 12),
-                    itemBuilder: (context, index) => _buildRelatedArticleCard(index),
+                    separatorBuilder: (context, index) =>
+                        const SizedBox(height: 12),
+                    itemBuilder: (context, index) =>
+                        _buildRelatedArticleCard(index),
                   ),
                 ],
               ),
@@ -225,7 +225,7 @@ class _ArticleDetailScreenState extends State<ArticleDetailScreen> {
                 ),
               ),
               const SizedBox(width: 12),
-              Expanded(
+              const Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -235,7 +235,7 @@ class _ArticleDetailScreenState extends State<ArticleDetailScreen> {
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                     ),
-                    const SizedBox(height: 4),
+                    SizedBox(height: 4),
                     Text(
                       '3 dk okuma',
                       style: AppTextStyles.caption,
@@ -254,7 +254,7 @@ class _ArticleDetailScreenState extends State<ArticleDetailScreen> {
     setState(() {
       _isFavorited = !_isFavorited;
     });
-    
+
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(

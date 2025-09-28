@@ -51,15 +51,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 const SizedBox(height: 16),
-                
+
                 // Header
-                Text(
+                const Text(
                   'Hesap Oluştur',
                   style: AppTextStyles.headlineLarge,
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: 8),
-                Text(
+                const Text(
                   'Kadın Atlası topluluğuna katıl',
                   style: AppTextStyles.bodyMedium,
                   textAlign: TextAlign.center,
@@ -70,8 +70,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 TextFormField(
                   controller: _displayNameController,
                   textInputAction: TextInputAction.next,
+                  onChanged: (value) => setState(() {}), // Trigger rebuild to update label color
                   decoration: InputDecoration(
                     labelText: l10n.displayName,
+                    labelStyle: TextStyle(
+                      color: _displayNameController.text.isNotEmpty 
+                        ? AppColors.primary 
+                        : AppColors.onSurface.withOpacity(0.6),
+                    ),
                     prefixIcon: const Icon(Icons.person_outlined),
                     helperText: 'Takma ad kullanmanızı öneririz',
                   ),
@@ -92,15 +98,22 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   controller: _emailController,
                   keyboardType: TextInputType.emailAddress,
                   textInputAction: TextInputAction.next,
+                  onChanged: (value) => setState(() {}), // Trigger rebuild to update label color
                   decoration: InputDecoration(
                     labelText: l10n.email,
+                    labelStyle: TextStyle(
+                      color: _emailController.text.isNotEmpty 
+                        ? AppColors.primary 
+                        : AppColors.onSurface.withOpacity(0.6),
+                    ),
                     prefixIcon: const Icon(Icons.email_outlined),
                   ),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return 'E-posta adresi gerekli';
                     }
-                    if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(value)) {
+                    if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$')
+                        .hasMatch(value)) {
                       return 'Geçerli bir e-posta adresi girin';
                     }
                     return null;
@@ -113,12 +126,20 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   controller: _passwordController,
                   obscureText: _obscurePassword,
                   textInputAction: TextInputAction.next,
+                  onChanged: (value) => setState(() {}), // Trigger rebuild to update label color
                   decoration: InputDecoration(
                     labelText: l10n.password,
+                    labelStyle: TextStyle(
+                      color: _passwordController.text.isNotEmpty 
+                        ? AppColors.primary 
+                        : AppColors.onSurface.withOpacity(0.6),
+                    ),
                     prefixIcon: const Icon(Icons.lock_outlined),
                     suffixIcon: IconButton(
                       icon: Icon(
-                        _obscurePassword ? Icons.visibility : Icons.visibility_off,
+                        _obscurePassword
+                            ? Icons.visibility
+                            : Icons.visibility_off,
                       ),
                       onPressed: () {
                         setState(() {
@@ -145,12 +166,20 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   controller: _confirmPasswordController,
                   obscureText: _obscureConfirmPassword,
                   textInputAction: TextInputAction.done,
+                  onChanged: (value) => setState(() {}), // Trigger rebuild to update label color
                   decoration: InputDecoration(
                     labelText: l10n.confirmPassword,
+                    labelStyle: TextStyle(
+                      color: _confirmPasswordController.text.isNotEmpty 
+                        ? AppColors.primary 
+                        : AppColors.onSurface.withOpacity(0.6),
+                    ),
                     prefixIcon: const Icon(Icons.lock_outlined),
                     suffixIcon: IconButton(
                       icon: Icon(
-                        _obscureConfirmPassword ? Icons.visibility : Icons.visibility_off,
+                        _obscureConfirmPassword
+                            ? Icons.visibility
+                            : Icons.visibility_off,
                       ),
                       onPressed: () {
                         setState(() {
@@ -184,7 +213,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   controlAffinity: ListTileControlAffinity.leading,
                   contentPadding: EdgeInsets.zero,
                 ),
-                
+
                 CheckboxListTile(
                   value: _agreeToPrivacy,
                   onChanged: (value) {
@@ -197,7 +226,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   controlAffinity: ListTileControlAffinity.leading,
                   contentPadding: EdgeInsets.zero,
                 ),
-                
+
                 CheckboxListTile(
                   value: _marketingEmails,
                   onChanged: (value) {
@@ -214,8 +243,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
                 // Register button
                 ElevatedButton(
-                  onPressed: _isLoading || !_agreeToTerms || !_agreeToPrivacy 
-                      ? null 
+                  onPressed: _isLoading || !_agreeToTerms || !_agreeToPrivacy
+                      ? null
                       : _handleRegister,
                   child: _isLoading
                       ? const SizedBox(
@@ -231,7 +260,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
+                    const Text(
                       'Zaten hesabın var mı? ',
                       style: AppTextStyles.bodyMedium,
                     ),
@@ -259,18 +288,19 @@ class _RegisterScreenState extends State<RegisterScreen> {
     try {
       // TODO: Implement actual registration logic
       await Future.delayed(const Duration(seconds: 2)); // Simulate API call
-      
+
       if (mounted) {
         // Show success message
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
-            content: Text('Hesabınız oluşturuldu! E-postanızı kontrol edin.'),
+            content: Text(
+                'Hesabınız oluşturuldu! Profil bilgilerinizi tamamlayalım.'),
             backgroundColor: AppColors.success,
           ),
         );
-        
-        // Navigate to login
-        context.go(Routes.login);
+
+        // Navigate to birth date for profile completion
+        context.go(Routes.birthDate);
       }
     } catch (e) {
       if (mounted) {

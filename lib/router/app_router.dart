@@ -1,6 +1,9 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../features/authentication/presentation/pages/onboarding_screen.dart';
+import '../features/authentication/presentation/pages/birth_date_screen.dart';
+import '../features/authentication/presentation/pages/period_tracking_screen.dart';
+import '../features/authentication/presentation/pages/interests_screen.dart';
 import '../features/authentication/presentation/pages/login_screen.dart';
 import '../features/authentication/presentation/pages/register_screen.dart';
 import '../features/content/presentation/pages/explore_screen.dart';
@@ -28,6 +31,18 @@ final appRouterProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: Routes.onboarding,
         builder: (context, state) => const OnboardingScreen(),
+      ),
+      GoRoute(
+        path: Routes.birthDate,
+        builder: (context, state) => const BirthDateScreen(),
+      ),
+      GoRoute(
+        path: Routes.periodTracking,
+        builder: (context, state) => const PeriodTrackingScreen(),
+      ),
+      GoRoute(
+        path: Routes.interests,
+        builder: (context, state) => const InterestsScreen(),
       ),
       GoRoute(
         path: Routes.login,
