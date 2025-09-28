@@ -1,0 +1,16 @@
+{
+  "dart.flutterSdkPath": "/Users/alican/flutter",
+  "dart.previewLsp": true,
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "explicit"
+  },
+  "files.associations": {
+    "*.arb": "json"
+  },
+  "dart.debugExternalPackageLibraries": false,
+  "dart.debugSdkLibraries": false,
+  "editor.rulers": [80],
+  "editor.tabSize": 2,
+  "dart.openDevTools": "flutter"
+}
