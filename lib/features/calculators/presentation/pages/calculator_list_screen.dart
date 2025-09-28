@@ -53,7 +53,7 @@ class CalculatorListScreen extends StatelessWidget {
               ),
               child: Row(
                 children: [
-                  Icon(
+                  const Icon(
                     Icons.medical_information_outlined,
                     color: AppColors.warning,
                     size: 20,
@@ -62,24 +62,26 @@ class CalculatorListScreen extends StatelessWidget {
                   Expanded(
                     child: Text(
                       'Bu hesaplama araçları eğitim amaçlıdır ve tıbbi tavsiye değildir.',
-                      style: AppTextStyles.caption.copyWith(color: AppColors.warning),
+                      style: AppTextStyles.caption
+                          .copyWith(color: AppColors.warning),
                     ),
                   ),
                 ],
               ),
             ),
             const SizedBox(height: 24),
-            
-            Text(
+
+            const Text(
               'Sağlık Hesaplayıcıları',
               style: AppTextStyles.headlineSmall,
             ),
             const SizedBox(height: 16),
-            
+
             Expanded(
               child: ListView.separated(
                 itemCount: calculators.length,
-                separatorBuilder: (context, index) => const SizedBox(height: 12),
+                separatorBuilder: (context, index) =>
+                    const SizedBox(height: 12),
                 itemBuilder: (context, index) {
                   final calculator = calculators[index];
                   return _buildCalculatorCard(calculator);

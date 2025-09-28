@@ -43,7 +43,7 @@ class _LoginScreenState extends State<LoginScreen> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 const SizedBox(height: 32),
-                
+
                 // Logo/Header
                 Container(
                   width: 80,
@@ -59,14 +59,14 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
                 const SizedBox(height: 32),
-                
-                Text(
+
+                const Text(
                   'Hoş Geldin!',
                   style: AppTextStyles.headlineLarge,
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: 8),
-                Text(
+                const Text(
                   'Hesabına giriş yap',
                   style: AppTextStyles.bodyMedium,
                   textAlign: TextAlign.center,
@@ -86,7 +86,8 @@ class _LoginScreenState extends State<LoginScreen> {
                     if (value == null || value.isEmpty) {
                       return 'E-posta adresi gerekli';
                     }
-                    if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(value)) {
+                    if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$')
+                        .hasMatch(value)) {
                       return 'Geçerli bir e-posta adresi girin';
                     }
                     return null;
@@ -104,7 +105,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     prefixIcon: const Icon(Icons.lock_outlined),
                     suffixIcon: IconButton(
                       icon: Icon(
-                        _obscurePassword ? Icons.visibility : Icons.visibility_off,
+                        _obscurePassword
+                            ? Icons.visibility
+                            : Icons.visibility_off,
                       ),
                       onPressed: () {
                         setState(() {
@@ -152,7 +155,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
+                    const Text(
                       'Hesabın yok mu? ',
                       style: AppTextStyles.bodyMedium,
                     ),
@@ -162,9 +165,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ],
                 ),
-                
+
                 const Spacer(),
-                
+
                 // Guest access
                 TextButton(
                   onPressed: () => context.go(Routes.home),
@@ -188,7 +191,7 @@ class _LoginScreenState extends State<LoginScreen> {
     try {
       // TODO: Implement actual login logic
       await Future.delayed(const Duration(seconds: 1)); // Simulate API call
-      
+
       if (mounted) {
         context.go(Routes.home);
       }
